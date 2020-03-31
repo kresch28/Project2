@@ -15,81 +15,174 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+<header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
 
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="#">Navbar</a>
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Navbar</a>
 
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="basicExampleNav">
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
 
-                <!-- Links -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
 
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-
-                </ul>
-                <!-- Links -->
-
-                <form class="form-inline">
-                    <div class="md-form my-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </form>
+                </li>
+
+            </ul>
+            <!-- Links -->
+
+            <form class="form-inline">
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+        </div>
+        <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main>
+    <div class="container text-center">
+        <h1 class="h1 mt-lg-4">Welcome</h1>
+        <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
+            <div class="text-white text-center py-5 px-4">
+                <div>
+                    <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
+                    <p class="mx-5 mb-5">Play press to start recording</p>
+                    <div class="d-flex justify-content-center">
+                        <div class="round-button"><div class="round-button-circle"><a href="http://example.com" class="round-button"><i class="fas fa-play fa-4x"></i></a></div></div>
+                    </div>
+                </div>
             </div>
-            <!-- Collapsible content -->
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!--Indicators-->
+                    <ol class="carousel-indicators" style="margin-bottom: -10%">
+                        <li data-target="#carousel-example-1z" data-slide-to="0" class="active" style="background-color: black"></li>
+                        <li data-target="#carousel-example-1z" data-slide-to="1" style="background-color: black"></li>
+                    </ol>
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        <!--First slide-->
+                        <div class="carousel-item active">
+                            <!-- Card -->
+                            <div class="card">
 
-        </nav>
-        <!--/.Navbar-->
-    </header>
-    <!--Main Navigation-->
+                                <!-- Card image -->
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/47.jpg"
+                                         alt="Card image cap">
+                                    <a href="#!">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
 
-    <!--Main layout-->
-    <main>
-        <h1>Hello World</h1>
-    </main>
-    <!--Main layout-->
+                                <!-- Card content -->
+                                <div class="card-body">
 
-    <!--Footer-->
-    <footer>
+                                    <!-- Title -->
+                                    <h4 class="card-title">Your List</h4>
+                                    <!-- Text -->
+                                    <p class="card-text">List Description: Songs to get you in the mood for a day at the beach or outside in the nature </p>
+                                    <!-- Button -->
+                                    <div class="text-center">
+                                        <a href="#" class="d-flex justify-content-center btn btn-primary">Start Playing</a>
+                                    </div>
+                                </div>
 
-    </footer>
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!--/First slide-->
+                        <!--Second slide-->
+                        <div class="carousel-item">
+                            <!-- Card image -->
+                            <div class="view overlay">
+                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/47.jpg"
+                                     alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
 
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+                            <!-- Card content -->
+                            <div class="card-body">
+
+                                <!-- Title -->
+                                <h4 class="card-title">History</h4>
+                                <!-- Text -->
+                                <p class="card-text">List Description: Songs you requested and played lately </p>
+                                <!-- Button -->
+                                <div class="text-center">
+                                    <a href="#" class="d-flex justify-content-center btn btn-primary">Start Playing</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Second slide-->
+                    </div>
+                    <!--/.Slides-->
+                </div>
+                <!--/.Carousel Wrapper-->
+            </div>
+            <div class="col-sm">
+
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main layout-->
+
+<!--Footer-->
+<footer>
+
+</footer>
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 </html>
