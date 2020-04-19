@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark primary-color">
 
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Project 2</a>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -39,13 +39,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="http://localhost:8888">Login</a>
                 </li>
 
-                <!-- Dropdown -->
+                <!-- Dropdown
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
@@ -53,7 +50,7 @@
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li> -->
 
             </ul>
             <!-- Links -->
@@ -172,7 +169,6 @@
 
 <!--Footer-->
 <footer>
-
 </footer>
 
 <!-- SCRIPTS -->
@@ -184,5 +180,37 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>
+    /*window.onSpotifyWebPlaybackSDKReady = () => {
+        const token = 'BQBQxK1ERfyulyRJlg3QEfEt0CWvp6NqJJwd_IgApadW6CvQbbGiEo8hY7O5gplqWLhf9jPbQZ_0_PjBqu_eZkpA6ljUWTW1ZkIIZHcepzyzIwIxgU2SPLBqJNkikxFOO107cL_MjWHRO9XWKECIwlJSA25fyJe2qjsrRfW-xzOxVz6hYRw';
+        const player = new Spotify.Player({
+            name: 'Web Playback SDK Quick Start Player',
+            getOAuthToken: cb => { cb(token); }
+        });
+
+        Error handling
+        player.addListener('initialization_error', ({ message }) => { console.error(message); });
+        player.addListener('authentication_error', ({ message }) => { console.error(message); });
+        player.addListener('account_error', ({ message }) => { console.error(message); });
+        player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+        // Playback status updates
+        player.addListener('player_state_changed', state => { console.log(state); });
+
+        // Ready
+        player.addListener('ready', ({ device_id }) => {
+            console.log('Ready with Device ID', device_id);
+        });
+
+        // Not Ready
+        player.addListener('not_ready', ({ device_id }) => {
+            console.log('Device ID has gone offline', device_id);
+        });
+
+        // Connect to the player!
+        player.connect();
+    };*/
+</script>
 </body>
 </html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Project2</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link src="css/mdb.min.css" type="text/css" rel="stylesheet">
+    <!-- Your custom styles (optional)-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color color-blue">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Project 2</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ho.html">Login</a>
+                </li>
+
+            </ul>
+
+            <!-- Search -->
+            <form class="form-inline" action="search" method="post">
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2 web-search-box" type="text" name="keyword" value='' placeholder="Search" aria-label="Search">
+                    <input type="submit" value="Go">
+                </div>
+            </form>
+        </div>
+
+    </nav>
+</header>
+    <main>
+        <div class="container text-center">
+            <h3 class="h1 mt-lg-4">Your Results:</h3>
+            <p><%= keyword %></p>
+            <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
+                <div class="text-white text-center">
+                    <div>
+                        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Title</strong></h2>
+                        <div>
+                            <iframe src="https://open.spotify.com/embed/track/353IDEfNzPJmGNRnOi5kJ1" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                        <p class="mx-5 mb-5">Like - Add - Share</p>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+<!-- Footer -->
+<footer>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+<!-- JQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script src="js/mdb.min.js"></script>
+
+</body>
+</html>

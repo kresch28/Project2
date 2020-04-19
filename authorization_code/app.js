@@ -12,6 +12,7 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
 var client_id = '6339d835dda0488ea37720c3ac51dba5'; // Your client id
 var client_secret = '3613bd7077714acfa53d7b4ee182ccf7'; // Your secret
@@ -36,9 +37,17 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
+app.set('view engine', 'html');
+
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
+
+app.use(express.static(__dirname + '/public/js'));
+app.use(express.static(__dirname + '/public/css'));
+
 
 app.get('/login', function(req, res) {
 
@@ -46,7 +55,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email user-read-playback-state';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -56,6 +65,16 @@ app.get('/login', function(req, res) {
       state: state
     }));
 });
+
+app.post('/player', function (req, res) {
+  const keyword = req.body.keyword;
+  console.log(keyword);
+  res.render(__dirname + "/public/player.html", {keyword:keyword});
+  //...
+  res.end()
+});
+
+
 
 app.get('/callback', function(req, res) {
 
@@ -68,9 +87,9 @@ app.get('/callback', function(req, res) {
 
   if (state === null || state !== storedState) {
     res.redirect('/#' +
-      querystring.stringify({
-        error: 'state_mismatch'
-      }));
+        querystring.stringify({
+          error: 'state_mismatch'
+        }));
   } else {
     res.clearCookie(stateKey);
     var authOptions = {
@@ -105,19 +124,21 @@ app.get('/callback', function(req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+            querystring.stringify({
+              access_token: access_token,
+              refresh_token: refresh_token
+            }));
       } else {
         res.redirect('/#' +
-          querystring.stringify({
-            error: 'invalid_token'
-          }));
+            querystring.stringify({
+              error: 'invalid_token'
+            }));
       }
     });
   }
 });
+
+
 
 app.get('/refresh_token', function(req, res) {
 
@@ -145,3 +166,5 @@ app.get('/refresh_token', function(req, res) {
 
 console.log('Listening on 8888');
 app.listen(8888);
+
+
