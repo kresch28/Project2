@@ -8,6 +8,7 @@
  */
 
 var express = require('express'); // Express web server framework
+const serverless = require('serverless-http');
 var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
@@ -312,5 +313,7 @@ app.get(url, function(req, res) {
 
 console.log('Listening on 8888');
 app.listen(8888);
+module.exports = app;
+module.exports.handler = serverless(app);
 
 

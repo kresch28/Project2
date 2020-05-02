@@ -178,7 +178,7 @@ console.log("try");
             });
 
         } else {
-            // render initial screen for app
+            // render initial screen
             $('#logged_out').show();
             $('#loggedin').hide();
         }
