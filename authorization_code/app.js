@@ -15,6 +15,8 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+let webhook = require('./webhook');
+
 var client_id = '6339d835dda0488ea37720c3ac51dba5'; // Your client id
 var client_secret = '3613bd7077714acfa53d7b4ee182ccf7'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
@@ -47,13 +49,12 @@ var app = express();
 app.set('view engine', 'html');
 
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
-
 app.use(express.static(__dirname + '/public/js'));
 app.use(express.static(__dirname + '/public/css'));
+
 
 
 app.get('/login', function(req, res) {
@@ -62,7 +63,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email playlist-read-private user-library-read user-read-currently-playing playlist-read-collaborative user-read-recently-played user-read-playback-state playlist-modify-public playlist-modify-private';
+  var scope = 'user-read-private user-read-email playlist-read-private user-library-read user-library-modify user-read-currently-playing playlist-read-collaborative user-read-recently-played user-read-playback-state playlist-modify-public playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -222,30 +223,47 @@ app.get('/refresh_token', function(req, res) {
 const url ="";
 const projectId = 'project2-1587310134234';
 const sessionId = '123456';
-const queries = ["Play 22 by Taylor Swift"];
+const queries = [];
 const languageCode = 'en';
 
 const dialogflow = require('dialogflow');
 
 // Instantiates a session client
 const sessionClient = new dialogflow.SessionsClient();
+const client = new dialogflow.AgentsClient();
 
-async function detectIntent(
-    projectId,
-    sessionId,
-    query,
-    contexts,
-    languageCode
-) {
+const {Storage} = require('@google-cloud/storage');
+const keyFilename = 'C:/Users/Kathi/Downloads/project2-1587310134234-92576f4cc506.json'
+
+async function detectIntent(projectId, sessionId, query, contexts, languageCode) {
   // The path to identify the agent that owns the created intent.
-  const sessionPath = sessionClient.projectAgentSessionPath(
+  /*const sessionPath = sessionClient.projectAgentSessionPath(
       projectId,
       sessionId
   );
+  sessionClient.projectAgentSessionPath is not a function
+*/
+
+  // Instantiates a client. If you don't specify credentials when constructing
+// the client, the client library will look for credentials in the
+// environment.
+  const storage = new Storage({projectId, keyFilename});
+
+// Makes an authenticated API request.
+  try {
+    const [buckets] = await storage.getBuckets();
+
+    console.log('Buckets:');
+    buckets.forEach((bucket) => {
+      console.log(bucket.name);
+    });
+  } catch (err) {
+    console.error('ERROR:', err);
+  }
 
   // The text query request.
   const request = {
-    session: sessionPath,
+    //session: sessionPath,
     queryInput: {
       text: {
         text: query,
@@ -268,6 +286,7 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
   // Keeping the context across queries let's us simulate an ongoing conversation with the bot
   let context;
   let intentResponse;
+  console.log(queries);
   for (const query of queries) {
     try {
       console.log(`Sending Query: ${query}`);
@@ -290,26 +309,19 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
   }
 }
 
-app.get('/forward', function(req, res) {
+queries.push("22");
+
+app.post('/player', function(req, res) {
   executeQueries(projectId, sessionId, queries, languageCode);
-});
-
-app.get(url, function(req, res) {
-
-  var state = generateRandomString(16);
-  res.cookie(stateKey, state);
-
-  // your application requests authorization
-  var scope = 'user-read-private user-read-email playlist-read-private user-library-read user-read-currently-playing playlist-read-collaborative user-read-recently-played user-read-playback-state playlist-modify-public playlist-modify-private';
-  res.redirect('https://accounts.spotify.com/authorize?' +
+  res.redirect('/#' +
       querystring.stringify({
-        response_type: 'code',
-        client_id: client_id,
-        scope: scope,
-        redirect_uri: redirect_uri,
-        state: state
+        projectId: projectId,
       }));
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.json({ status: projectId })
 });
+
+
 
 console.log('Listening on 8888');
 app.listen(8888);

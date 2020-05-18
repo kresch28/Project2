@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Example of the Authorization Code flow with Spotify</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css">
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="/css/mdb.min.css">
+    <link href="css/mdb.min.css" type="text/css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="/style.css">
     <style type="text/css">
@@ -24,13 +22,56 @@
         white-space: nowrap;
         width: 500px;
       }
+      .record {
+        background: none;
+        border: none;
+      }
     </style>
   </head>
 
   <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color color-blue">
+
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">Project 2</a>
+
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ho.html">Login</a>
+          </li>
+
+        </ul>
+
+        <!-- Search -->
+        <form class="form-inline" action="/#" method="get" id="searchForm">
+          <div class="md-form my-0">
+            <input class="form-control mr-sm-2 web-search-box" type="text" name="keyword" id="keyword" value='' placeholder="Search" aria-label="Search">
+            <input type="submit" name="submit" value="Go" id="go">
+          </div>
+        </form>
+      </div>
+
+    </nav>
+  </header>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
+        <h1>Press Login with Spotify to get started:</h1>
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
         <div class="container text-center">
           <h1 class="h1 mt-lg-4">Welcome</h1>
@@ -38,7 +79,7 @@
             <div class="text-white text-center py-5 px-4">
               <div>
                 <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
-                <p class="mx-5 mb-5">Play press to start recording</p>
+                <p class="mx-5 mb-5">Let's get started</p>
                 <div class="d-flex justify-content-center">
                   <div class="round-button"><div class="round-button-circle"><a href="http://example.com" class="round-button"><i class="fas fa-play fa-4x"></i></a></div></div>
                 </div>
@@ -57,20 +98,15 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
+      <h1>Logged in as {{ display_name }}</h1>
       <div class="media">
         <div class="pull-left">
           <img class="media-object" width="150" src="{{images.0.url}}" />
         </div>
         <div class="media-body">
           <dl class="dl-horizontal">
-            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
+            <dt>Display name</dt><dd class="clearfix">{{ display_name }}</dd>
+            <dt>Email</dt><dd>{{ email }}</dd>
           </dl>
         </div>
       </div>
@@ -82,94 +118,13 @@
             <div class="text-white text-center py-5 px-4">
               <div>
                 <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
-                <p class="mx-5 mb-5">Play press to start recording</p>
+                <p class="mx-5 mb-5">Let's get started</p>
                 <div class="d-flex justify-content-center">
-                  <div class="round-button"><div class="round-button-circle"><a href="http://example.com" class="round-button"><i class="fas fa-play fa-4x"></i></a></div></div>
+                  <div class="round-button record"><div class="round-button-circle"><button class="record round-button btn-link"><i class="fas fa-microphone fa-4x"></i></button></div></div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!--<div class="container">
-          <div class="row">
-            <div class="col-sm">
-            </div>
-            <div class="col-sm">
-              <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
-                --Indicators--
-                <ol class="carousel-indicators" style="margin-bottom: -10%">
-                  <li data-target="#carousel-example-1z" data-slide-to="0" class="active" style="background-color: black"></li>
-                  <li data-target="#carousel-example-1z" data-slide-to="1" style="background-color: black"></li>
-                </ol>
-                --/.Indicators--
-                --Slides--
-                <div class="carousel-inner" role="listbox">
-                  --First slide--
-                  <div class="carousel-item active">
-                    -- Card --
-                    <div class="card">
-
-                      -- Card image --
-                      <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/47.jpg"
-                             alt="Card image cap">
-                        <a href="#!">
-                          <div class="mask rgba-white-slight"></div>
-                        </a>
-                      </div>
-
-                      -- Card content --
-                      <div class="card-body">
-
-                        -- Title --
-                        <h4 class="card-title">Your List</h4>
-                        -- Text --
-                        <p class="card-text">List Description: Songs to get you in the mood for a day at the beach or outside in the nature </p>
-                        -- Button --
-                        <div class="text-center">
-                          <a href="#" class="d-flex justify-content-center btn btn-primary">Start Playing</a>
-                        </div>
-                      </div>
-
-                    </div>
-                    -- Card --
-                  </div>
-                  --/First slide--
-                  --Second slide--
-                  <div class="carousel-item">
-                    -- Card image --
-                    <div class="view overlay">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/47.jpg"
-                           alt="Card image cap">
-                      <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-
-                    -- Card content --
-                    <div class="card-body">
-
-                      -- Title --
-                      <h4 class="card-title">History</h4>
-                      -- Text --
-                      <p class="card-text">List Description: Songs you requested and played lately </p>
-                      -- Button --
-                      <div class="text-center">
-                        <a href="#" class="d-flex justify-content-center btn btn-primary">Start Playing</a>
-                      </div>
-                    </div>
-                  </div>
-                  --/Second slide--
-                </div>
-                --/.Slides--
-              </div>
-              --/.Carousel Wrapper--
-            </div>
-            <div class="col-sm">
-
-            </div>
-          </div>-->
-          <iframe src="https://open.spotify.com/embed/track/353IDEfNzPJmGNRnOi5kJ1" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
       </main>
     </script>
@@ -178,129 +133,19 @@
       <h2>oAuth info</h2>
       <dl class="dl-horizontal">
         <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
-      </dl>
+        </dl>
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script src="/js/mdb.min.js"></script>
-    <script>
-      (function() {
-
-        /**
-         * Obtains parameters from the hash of the URL
-         * @return Object
-         */
-        function getHashParams() {
-          var hashParams = {};
-          var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.hash.substring(1);
-          while ( e = r.exec(q)) {
-             hashParams[e[1]] = decodeURIComponent(e[2]);
-          }
-          return hashParams;
-        }
-
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-            userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
-
-        /*var userProfileSource_ = document.getElementById('user-profile-template_').innerHTML,
-                userProfileTemplate_ = Handlebars.compile(userProfileSource_),
-                userProfilePlaceholder_ = document.getElementById('user-profile');
-      */
-        var oauthSource = document.getElementById('oauth-template').innerHTML,
-            oauthTemplate = Handlebars.compile(oauthSource),
-            oauthPlaceholder = document.getElementById('oauth');
-
-        var params = getHashParams();
-
-        var access_token = params.access_token,
-            refresh_token = params.refresh_token,
-            error = params.error;
-
-        if (error) {
-          alert('There was an error during the authentication');
-        } else {
-          if (access_token) {
-            // render oauth info
-            oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
-            });
-
-            $.ajax({
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                  'Authorization': 'Bearer ' + access_token
-                },
-                success: function(response) {
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-
-
-                  $('#login').hide();
-                  $('#loggedin').show();
-                }
-            });
-          } else {
-              // render initial screen
-              $('#login').show();
-              $('#loggedin').hide();
-
-            document.onSpotifyWebPlaybackSDKReady = () => {
-              const token = 'BQBQxK1ERfyulyRJlg3QEfEt0CWvp6NqJJwd_IgApadW6CvQbbGiEo8hY7O5gplqWLhf9jPbQZ_0_PjBqu_eZkpA6ljUWTW1ZkIIZHcepzyzIwIxgU2SPLBqJNkikxFOO107cL_MjWHRO9XWKECIwlJSA25fyJe2qjsrRfW-xzOxVz6hYRw';
-              const player = new Spotify.Player({
-                name: 'Web Playback SDK Quick Start Player',
-                getOAuthToken: cb => { cb(token); }
-              });
-
-              // Error handling
-              player.addListener('initialization_error', ({ message }) => { console.error(message); });
-              player.addListener('authentication_error', ({ message }) => { console.error(message); });
-              player.addListener('account_error', ({ message }) => { console.error(message); });
-              player.addListener('playback_error', ({ message }) => { console.error(message); });
-
-              // Playback status updates
-              player.addListener('player_state_changed', state => { console.log(state); });
-
-              // Ready
-              player.addListener('ready', ({ device_id }) => {
-                console.log('Ready with Device ID', device_id);
-              });
-
-              // Not Ready
-              player.addListener('not_ready', ({ device_id }) => {
-                console.log('Device ID has gone offline', device_id);
-              });
-
-              // Connect to the player!
-              player.connect();
-            };
-          }
-
-          document.getElementById('obtain-new-token').addEventListener('click', function() {
-            $.ajax({
-              url: '/refresh_token',
-              data: {
-                'refresh_token': refresh_token
-              }
-            }).done(function(data) {
-              access_token = data.access_token;
-              oauthPlaceholder.innerHTML = oauthTemplate({
-                access_token: access_token,
-                refresh_token: refresh_token
-              });
-            });
-          }, false);
-        }
-      })();
-
-
-    </script>
+    <script src="js/mdb.min.js"></script>
+    <script src="js/login.js"></script>
   </body>
 </html>
 

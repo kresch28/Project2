@@ -6,6 +6,12 @@ console.log("try");
     var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
     var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
+
+    var item = " ";
+    var artist = " ";
+
+    var itemRequest = [];
+
     var recognizing;
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
@@ -18,7 +24,50 @@ console.log("try");
             if (event.results[i].isFinal) {
                 $('#keyword').val(event.results[i][0].transcript);
                 $('#keyword').attr("placeholder", event.results[i][0].transcript);
-                console.log(event.results[i][0].transcript);
+                item = event.results[i][0].transcript;
+                itemRequest.push(item);
+                console.log(itemRequest);
+                if(event.results[i][0].transcript.includes('play')){
+                    itemRequest.pop();
+                    console.log('included play: '+ event.results[i][0].transcript);
+                    // console.log("starting at "+event.results[i][0].transcript.indexOf("play"));
+                    // var start = event.results[i][0].transcript.indexOf("play") + 5;
+                    console.log("Item: "+event.results[i][0].transcript.split(" ", 1)[1]);
+                    title = event.results[i][0].transcript.split(" ", 2)[1];
+                    itemRequest.push(title);
+                    console.log(itemRequest);
+                }
+                if(event.results[i][0].transcript.includes('from')){
+                    if(itemRequest.title == null) {
+                        itemRequest.pop();
+                        if(event.results[i][0].transcript.includes('play')){
+                            console.log("Item: "+event.results[i][0].transcript.split(" ", 1)[1]);
+                            title = event.results[i][0].transcript.split(" ", 2)[1];
+                            itemRequest.push(title);
+                            console.log(itemRequest);
+                        }
+                        else {
+                            var startTitle = event.results[i][0].transcript.indexOf(" ");
+                            console.log(startTitle);
+                            title = event.results[i][0].transcript.slice(0,startTitle);
+                            console.log("Item: " + title);
+                            itemRequest.push(title);
+                        }
+                    }
+                    console.log('included from: '+ event.results[i][0].transcript);
+                    console.log(itemRequest);
+                    var startArtist = event.results[i][0].transcript.indexOf("from") + 5;
+
+                    console.log("Artist: " + event.results[i][0].transcript.slice(startArtist));
+                    artist = event.results[i][0].transcript.slice(startArtist);
+                    itemRequest.push(artist);
+                    console.log(itemRequest);
+                }
+                /*if (event.results[i][0].transcript.length <= 1){
+                    item = event.results[i][0].transcript;
+                    itemRequest.push(item);
+                    console.log(item);
+                }*/
             }
         }
     }
@@ -71,6 +120,8 @@ console.log("try");
         //localStorage = new LocalStorage();
     }
 
+    var storageSet;
+
     function getHashParams() {
         var hashParams = {};
         var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -97,6 +148,7 @@ console.log("try");
 
     if (error) {
         alert('There was an error during the authentication');
+        localStorage.clear();
     } else {
         if (access_token) {
             // render oauth info
@@ -113,7 +165,9 @@ console.log("try");
                 success: function(response) {
                     userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                     // cardItemPlaceholder.innerHTML = cardItemTemplate();
-                    localStorage.setItem('access_token', access_token);
+
+
+                    console.log(response);
                     $('#logged_out').hide();
                     $('#loggedin').show();
                     $('#card-item-result').show();
@@ -122,6 +176,27 @@ console.log("try");
                         toggleStartStop();
                     })
 
+                    if (storageSet == true && new Date().getTime() > parseInt(localStorage.time)) {
+                        // If the item is expired, delete the item from storage
+                        // and return null
+                        console.log(storageSet);
+                        localStorage.clear();
+                        storageSet = false;
+                        console.log('time is over');
+                        console.log(storageSet);
+                    }
+                    if(localStorage.length == 0 && storageSet == undefined){
+                        console.log(storageSet);
+                        localStorage.setItem('access_token', access_token);
+                        localStorage.setItem('refresh_token', refresh_token);
+                        localStorage.setItem('name', response.display_name);
+                        localStorage.setItem('email', response.email);
+                        time = new Date().getTime() + 60000;
+                        localStorage.setItem('time', JSON.stringify(time));
+                        storageSet = true;
+                        console.log("new local storage");
+                        console.log(storageSet);
+                    }
                     /*$('.record').on('click', (e) => {
                         e.stopPropagation();
                         // Create a recognize stream
@@ -152,6 +227,12 @@ console.log("try");
 
                         console.log('Listening, press Ctrl+C to stop.');
                     })*/
+                },
+                error: function () {
+                    console.log("access token could be outdated")
+                    localStorage.clear();
+                    $('#logged_out').show();
+                    $('#loggedin').hide();
                 }
             });
             $.ajax({
@@ -165,7 +246,7 @@ console.log("try");
                     $.each(response.items, function (index, value)
                     {
                         if(value.context != null && index == 0){
-                            console.log(value.context.uri);
+                            //console.log(value);
                             console.log(value.context.uri.split(':')[2]);
                             playerUri = value.context.uri.split(':')[2];
                             console.log(value.context.type);
@@ -187,38 +268,79 @@ console.log("try");
     var form = $('#searchForm');
     form.on('submit', (e) => {
         e.preventDefault();
-        var input = $('#keyword');
-        var keyword = input.val();
+        // var input = $('#keyword');
+        var keyword = itemRequest;
         console.log(keyword);
 
-        //TODO ajax to server for dialog flow ajax request
-
-        var playerResult = "";
-
         $.ajax({
-            url: "https://api.spotify.com/v1/search?q="+keyword+"&type=track&market=US",
-            type: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + access_token
-            },
-            success: function(response) {
-                console.log(response.tracks.items);
-                $.each(response.tracks.items, function (index, value)
-                {
-                    var url = value.external_urls.spotify;
-                    // console.log(url);
-                    var s = url.substring(31, 53);
-                    playerResult = s;
-                });
-                console.log("Player: "+playerResult);
-                $('#main-card').html("<iframe src='https://open.spotify.com/embed/track/"+playerResult+"' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>")
-                $('#social').show();
-                bindListeners(playerResult);
-            }
+            url: "/player",
+            type: 'POST',
+            // headers: {'keyword' : keyword},
+            // success: function(response) { console.log(response)}
         });
 
-        //$('#result').html("<iframe src='https://open.spotify.com/embed/album/"+playerResult+"' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>")
-    })
+        var playerResult = "";
+        if(itemRequest.length > 1){
+            console.log('Artist is available');
+            $.ajax({
+                url: "https://api.spotify.com/v1/search?q="+itemRequest[0]+"&type=track&market=US",
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                    let url, s;
+                    $.each(response.tracks.items, (i, item) => {
+                        // console.log(value.artists);
+                        $.each(item.artists, (ii, artist) => {
+                            if(artist.name === itemRequest[1]){
+                                console.log("artist", artist.name);
+                                console.log("track", item.artists);
+
+                                url = item.external_urls.spotify;
+                                s = url.substring(31, 53);
+                                playerResult = s;
+                            }
+                        })
+                    })
+                    if(!url || !s){
+                        console.warn("artist not found");
+                        return
+                    }
+                    console.log("Player: "+playerResult);
+                    $('#main-card').html("<iframe src='https://open.spotify.com/embed/track/"+playerResult+"' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>")
+                    $('#social').show();
+                    bindListeners(playerResult);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: "https://api.spotify.com/v1/search?q="+itemRequest[0]+"&type=track&market=US",
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                    console.log(response.tracks.items);
+                    $.each(response.tracks.items, function (index, value)
+                    {
+                        var url = value.external_urls.spotify;
+                        var s = url.substring(31, 53);
+                        playerResult = s;
+                    });
+                    console.log("Player: "+playerResult);
+                    $('#main-card').html("<iframe src='https://open.spotify.com/embed/track/"+playerResult+"' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>")
+                    $('#social').show();
+                    bindListeners(playerResult);
+                }
+            });
+        }
+
+
+        //$('#main-card').html("<iframe src='https://open.spotify.com/embed/track/"+playerResult+"' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>")
+        //$('#social').show();
+})
 
 
 
@@ -246,6 +368,24 @@ console.log("try");
                 }
             });
         });
+        var likeButton = $('#like');
+        likeButton.on("click", (e) => {
+            e.preventDefault();
+            $.ajax({
+                url: "https://api.spotify.com/v1/me/tracks?ids="+playerResult+"",
+                type: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function(){
+                  alert('Track added to liked songs!')
+                },
+                error: function() {
+                    alert('error!')
+                }
+            });
+            }
+        );
 
         var shareButton = $('#share');
         shareButton.on("click", (e) => {
@@ -290,3 +430,10 @@ console.log("try");
 
 
 })();
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+    });
+}
+

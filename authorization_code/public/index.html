@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#3367D6">`
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Project2</title>
     <!-- Font Awesome -->
@@ -13,6 +14,7 @@
     <link href="css/mdb.min.css" type="text/css" rel="stylesheet">
     <!-- Your custom styles (optional)-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <header>
@@ -45,7 +47,7 @@
             </ul>
 
             <!-- Search -->
-            <form class="form-inline" action="/forward" method="get" id="searchForm">
+            <form class="form-inline" action="/player" method="get" id="searchForm">
                 <div class="md-form my-0">
                     <input class="form-control mr-sm-2 web-search-box" type="text" name="keyword" id="keyword" value='' placeholder="Search" aria-label="Search">
                     <input type="submit" name="submit" value="Go" id="go">
@@ -65,7 +67,7 @@
             <div class="text-white text-center py-5 px-4">
                 <div>
                     <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
-                    <p class="mx-5 mb-5">Login to Start</p>
+                    <p class="mx-5 mb-5"><a href="ho.html">Login to Start</a></p>
                     <div class="d-flex justify-content-center">
                       </div>
                 </div>
@@ -287,11 +289,10 @@
 <!-- MDB core JavaScript -->
 <script src="js/mdb.min.js"></script>
 <script src="js/try.js"></script>
+<script src="js/register-sw.js"></script>
 <script src="dist/main.js"></script>
 
-
 <script>
-
     /*window.onSpotifyWebPlaybackSDKReady = () => {
         const token = 'BQBQxK1ERfyulyRJlg3QEfEt0CWvp6NqJJwd_IgApadW6CvQbbGiEo8hY7O5gplqWLhf9jPbQZ_0_PjBqu_eZkpA6ljUWTW1ZkIIZHcepzyzIwIxgU2SPLBqJNkikxFOO107cL_MjWHRO9XWKECIwlJSA25fyJe2qjsrRfW-xzOxVz6hYRw';
         const player = new Spotify.Player({
@@ -427,5 +428,13 @@
         }
     })();*/
 </script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.14.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
 </body>
 </html>
