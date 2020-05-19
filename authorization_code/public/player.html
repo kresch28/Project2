@@ -88,8 +88,8 @@
     </div>
 </div>
 
-
-<script id="user-profile-template" type="text/x-handlebars-template"> -->
+ -->
+<script id="user-profile-template" type="text/x-handlebars-template">
 
     <main>
         <div class="container text-center">
@@ -128,7 +128,7 @@
             </div>
         </div>
     </main>
-
+</script>
 
 
 
@@ -288,5 +288,21 @@
 <script src="js/mdb.min.js"></script>
 <script src="js/try.js"></script>
 <script src="dist/main.js"></script>
+<script>
+
+    console.log("player");
+    
+    var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+        userProfileTemplate = Handlebars.compile(userProfileSource),
+        userProfilePlaceholder = document.getElementById('user-profile');
+
+    if(window.localStorage.length > 0) {
+        console.log(window.localStorage);
+        userProfilePlaceholder.innerHTML = userProfileTemplate({
+            display_name: window.localStorage.name,
+            email: window.localStorage.email
+        });
+    }
+</script>
 </body>
 </html>
