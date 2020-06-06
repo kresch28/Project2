@@ -48,12 +48,16 @@ var app = express();
 
 app.set('view engine', 'html');
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 app.use(express.static(__dirname + '/public/js'));
 app.use(express.static(__dirname + '/public/css'));
+
+var userCredentialsStoredInMemory = {};
 
 
 
@@ -84,7 +88,7 @@ app.get('/callback', function(req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
-    res.redirect('/#' +
+    res.redirect('/player.html' +
         querystring.stringify({
           error: 'state_mismatch'
         }));
@@ -106,6 +110,8 @@ app.get('/callback', function(req, res) {
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
+        userCredentialsStoredInMemory.access_token = body.access_token;
+        userCredentialsStoredInMemory.refresh_token = body.refresh_token;
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
 
@@ -118,14 +124,23 @@ app.get('/callback', function(req, res) {
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
           console.log(body);
+          userCredentialsStoredInMemory.body = body;
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        /*res.redirect('/#' +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,
-            }));
+            }));*/
+
+        /*localStorage.setItem('name', response.display_name);
+        localStorage.setItem('email', response.email);
+        time = new Date().getTime() + 60000;
+        localStorage.setItem('time', JSON.stringify(time));*/
+        //res.json(userCredentialsStoredInMemory);
+
+        res.redirect('/player.html');
 
 
       } else {
@@ -140,6 +155,15 @@ app.get('/callback', function(req, res) {
   }
 });
 
+
+app.post('/player', function (req, res) {
+  res.json({status: 200, userCredentialsStoredInMemory});
+});
+
+/*app.post('/result', function (req, res) {
+  res.send(req.body);
+  // res.redirect('/result.html');
+});*/
 
 
 app.get('/refresh_token', function(req, res) {

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#3367D6">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Player</title>
     <!-- Font Awesome -->
@@ -13,6 +14,7 @@
     <link href="css/mdb.min.css" type="text/css" rel="stylesheet">
     <!-- Your custom styles (optional)-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 <header>
@@ -45,7 +47,7 @@
             </ul>
 
             <!-- Search -->
-            <form class="form-inline" action="/forward" method="get" id="searchForm">
+            <form class="form-inline" action="result.html" method="get" id="searchForm">
                 <div class="md-form my-0">
                     <input class="form-control mr-sm-2 web-search-box" type="text" name="keyword" id="keyword" value='' placeholder="Search" aria-label="Search">
                     <input type="submit" name="submit" value="Go" id="go">
@@ -56,44 +58,13 @@
     </nav>
 </header>
 
-<!--Main layout-->
-<!-- Logged Out >
-<main>
-    <div id="logged_out" class="container text-center">
-        <h1 class="h1 mt-lg-4">Welcome</h1>
-        <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
-            <div class="text-white text-center py-5 px-4">
-                <div>
-                    <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
-                    <p class="mx-5 mb-5"><a href="ho.html">Login to Start</a></p>
-                    <div class="d-flex justify-content-center">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-<! Logged In >
-<div id="loggedin">
-    <div id="user-profile">
-    </div>
-    <! <div id="oauth">
-    </div>
-    <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button> >
+<div id="user-profile">
 </div>
-
-<div id="card-item-result">
-    <div id="card-item">
-    </div>
-</div>
-
- -->
 <script id="user-profile-template" type="text/x-handlebars-template">
 
     <main>
         <div class="container text-center">
-            <h1 class="h1 mt-lg-4">Welcome {{display_name}}</h1>
+            <h1 class="h1 mt-lg-4 _title">Welcome {{display_name}}</h1>
             <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
                 <div class="text-white text-center py-5 px-4" id="main-card">
                     <div>
@@ -286,13 +257,13 @@
 <script src="js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script src="js/mdb.min.js"></script>
-<script src="js/try.js"></script>
+<script src="js/player.js"></script>
 <script src="dist/main.js"></script>
 <script>
 
     console.log("player");
     
-    var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+    /*var userProfileSource = document.getElementById('user-profile-template').innerHTML,
         userProfileTemplate = Handlebars.compile(userProfileSource),
         userProfilePlaceholder = document.getElementById('user-profile');
 
@@ -302,7 +273,14 @@
             display_name: window.localStorage.name,
             email: window.localStorage.email
         });
-    }
+    }*/
 </script>
+<script src="/__/firebase/7.14.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
 </body>
 </html>

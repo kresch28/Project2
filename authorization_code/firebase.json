@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "im590-project2",
     "public": "public",
     "ignore": [
       "firebase.json",

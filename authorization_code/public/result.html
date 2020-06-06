@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#3367D6">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Player</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" type="text/css" rel="stylesheet">
+    <!-- Your custom styles (optional)-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color color-blue">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Project 2</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ho.html">Login</a>
+                </li>
+
+            </ul>
+
+            <!-- Search -->
+            <form class="form-inline" action="/#" method="get" id="searchForm">
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2 web-search-box" type="text" name="keyword" id="keyword" value='' placeholder="Search" aria-label="Search">
+                    <input type="submit" name="submit" value="Go" id="go">
+                </div>
+            </form>
+        </div>
+
+    </nav>
+</header>
+
+<div id="user-profile">
+</div>
+<!--<script id="user-profile-template" type="text/x-handlebars-template">-->
+
+    <main>
+        <div class="container text-center">
+            <h1 class="h1 mt-lg-4 _title">Your result:</h1>
+            <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/background.jpg);">
+                <div class="text-white text-center py-5 px-4" id="main-card">
+                </div>
+                <div id="social" style="display: none">
+                    <div class="d-flex justify-content-sm-around" style="width: 50%; margin-left: 25%">
+                        <div class="round-button"><div class="round-button-circle"><a id="like" href="/" class="round-button"><i class="fas fa-thumbs-up fa-2x"></i></a></div></div>
+                        <div class="round-button"><div class="round-button-circle"><a id="share" href="/" class="round-button"><i class="fas fa-share-square fa-2x"></i></a></div></div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary px-3" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span><i class="fas fa-list fa-2x"></i></span>
+                            </button>
+                            <div class="dropdown-menu">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <h2>Your recent results:</h2>
+            <div class="text-white text-center py-5 px-4" id="context-card">
+            </div>
+        </div>
+    </main>
+<!--</script>-->
+
+
+
+<!--Footer >
+<footer class="page-footer font-small color-blue pt-4 mt-lg-5">
+
+    <!-- Footer Text >
+    <div class="container-fluid text-center text-md-left">
+
+        <!-- Grid row >
+        <div class="row">
+
+            <!-- Grid column >
+            <div class="col-md-6 mt-md-0 mt-3">
+
+                <!-- Content >
+                <h3>Logged in as {{display_name}}</h3>
+                <div class="media">
+                    <div class="media-body">
+                        <dl class="dl-horizontal">
+                            <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+                            <dt>Email</dt><dd>{{email}}</dd>
+                            <dt>Country</dt><dd>{{country}}</dd>
+                        </dl>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Grid column -
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column >
+            <div class="col-md-6 mb-md-0 mb-3">
+
+                <!-- Content >
+                <div class="media">
+                    <div class="media-body">
+                        <dl class="dl-horizontal">
+                            <dt>Id</dt><dd>{{id}}</dd>
+                            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+                            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <!-- Grid column >
+
+        </div>
+        <!-- Grid row >
+
+    </div>
+    <!-- Footer Text >
+
+    <!-- Copyright >
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright >
+</footer>
+
+</script> -->
+<script id="card-item-template" type="text/x-handlebars-template">
+
+    <!-- Card Items -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!--Indicators-->
+                    <ol class="carousel-indicators" style="margin-bottom: -10%">
+                        <li data-target="#carousel-example-1z" data-slide-to="0" class="active" style="background-color: black"></li>
+                        <li data-target="#carousel-example-1z" data-slide-to="1" style="background-color: black"></li>
+                    </ol>
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        <!--First slide-->
+                        <div class="carousel-item active">
+                            <!-- Card -->
+                            <div class="card">
+
+                                <!-- Card image -->
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/47.jpg"
+                                         alt="Card image cap">
+                                    <a href="#!">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+
+                                <!-- Card content -->
+                                <div class="card-body">
+
+                                    <!-- Title -->
+                                    <h4 class="card-title">Your List</h4>
+                                    <!-- Text -->
+                                    <p class="card-text">List Description: Songs to get you in the mood for a day at the beach or outside in the nature </p>
+                                    <!-- Button -->
+                                    <div class="text-center">
+                                        <a href="#" class="d-flex justify-content-center btn btn-primary">Start Playing</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!--/First slide-->
+                        <!--Second slide-->
+                        <div class="carousel-item">
+                            <!-- Card image -->
+                            <div class="view overlay">
+                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/47.jpg"
+                                     alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body">
+
+                                <!-- Title -->
+                                <h4 class="card-title">History</h4>
+                                <!-- Text -->
+                                <p class="card-text">List Description: Songs you requested and played lately </p>
+                                <!-- Button -->
+                                <div class="text-center">
+                                    <a href="#" class="d-flex justify-content-center btn btn-primary">Start Playing</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Second slide-->
+                    </div>
+                    <!--/.Slides-->
+                </div>
+                <!--/.Carousel Wrapper-->
+            </div>
+            <div class="col-sm">
+
+            </div>
+        </div>
+    </div>
+</script>
+<!-- SCRIPTS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+<!-- JQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script src="js/mdb.min.js"></script>
+<script src="js/result.js"></script>
+<script src="dist/main.js"></script>
+<script>
+
+    console.log("result");
+
+    /*var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+        userProfileTemplate = Handlebars.compile(userProfileSource),
+        userProfilePlaceholder = document.getElementById('user-profile');
+
+    if(window.localStorage.length > 0) {
+        console.log(window.localStorage);
+        userProfilePlaceholder.innerHTML = userProfileTemplate({
+            display_name: window.localStorage.name,
+            email: window.localStorage.email
+        });
+    }*/
+</script>
+<script src="/__/firebase/7.14.4/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+</body>
+</html>

@@ -15,6 +15,7 @@
     "express": "~4.16.0",
     "node-localstorage": "^2.1.6",
     "node-record-lpcm16": "^1.0.1",
+    "pug": "^3.0.0",
     "querystring": "~0.2.0",
     "request": "~2.83.0",
     "requirejs": "^2.3.6",
