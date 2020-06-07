@@ -77,12 +77,12 @@ function toggleStartStop() {
             email: window.localStorage.email});
         $('#loggedin').show();
 
-        $('.record').on('click', (e) => {
+        /*$('.record').on('click', (e) => {
             console.log(this);
             e.stopPropagation();
-            window.location.href = "http://localhost:8888/#access_token="+ window.localStorage.access_token+"&refresh_token="+window.localStorage.refresh_token
+            window.location.href = "http://localhost:8888/player.html"
             //toggleStartStop();
-        })
+        })*/
 
         /* FORM:
         var form = $('#searchForm');
