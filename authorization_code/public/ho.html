@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#3367D6"/>
     <title>Example of the Authorization Code flow with Spotify</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" type="text/css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
     <!-- Your custom styles (optional) -->
     <link href="/style.css">
     <style type="text/css">
@@ -81,7 +83,7 @@
                 <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
                 <p class="mx-5 mb-5">Let's get started</p>
                 <div class="d-flex justify-content-center">
-                  <div class="round-button"><div class="round-button-circle"><a href="http://example.com" class="round-button"><i class="fas fa-play fa-4x"></i></a></div></div>
+                  <div class="round-button"><div class="round-button-circle"><a href="/login" class="round-button"><i class="fas fa-play fa-4x"></i></a></div></div>
                 </div>
               </div>
             </div>
@@ -120,7 +122,7 @@
                 <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
                 <p class="mx-5 mb-5">Let's get started</p>
                 <div class="d-flex justify-content-center">
-                  <div class="round-button record"><div class="round-button-circle"><a href="/login" class="round-button"><i class="fas fa-microphone fa-4x"></i></a></div></div>
+                  <div class="round-button record"><div class="round-button-circle"><a href="/login" class="round-button"><i class="fas fa-play fa-4x"></i></a></div></div>
                 </div>
               </div>
             </div>
@@ -146,6 +148,27 @@
     <!-- MDB core JavaScript -->
     <script src="js/mdb.min.js"></script>
     <script src="js/login.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD4BIHvMdGsopNV1hH3Q3IvSEikoLPI4fE",
+      authDomain: "project2test-9cd70.firebaseapp.com",
+      databaseURL: "https://project2test-9cd70.firebaseio.com",
+      projectId: "project2test-9cd70",
+      storageBucket: "project2test-9cd70.appspot.com",
+      messagingSenderId: "839390629189",
+      appId: "1:839390629189:web:66930061ee613d5cc2422c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
   </body>
 </html>
 

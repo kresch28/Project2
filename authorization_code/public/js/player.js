@@ -32,10 +32,14 @@ $.post( "/player", function(loginData) {
 
             access_token = data.userCredentialsStoredInMemory.access_token;
 
-            $('.record').on('click', (e) => {
-                e.stopPropagation();
+            $( window ).on( "load", function() {
                 toggleStartStop();
             })
+            /*$('.record').on('click', (e) => {
+                e.stopPropagation();
+                toggleStartStop();
+            })*/
+
         } else {
             //logged out
         }
@@ -48,15 +52,15 @@ var itemRequest = [];
 
 var form = $('#searchForm');
 var input = $('#keyword');
-form.on('submit', (e) => {
+/*form.on('submit', (e) => {
     var keyword = itemRequest;
 
-    /*$.post('/result', itemRequest).done(function (data) {
+    /!*$.post('/result', itemRequest).done(function (data) {
         alert(data);
         top.location.href = "/result.html"
-    });*/
+    });*!/
 
-    /*$.ajax({
+    /!*$.ajax({
         type: "POST",
         url: "/result",
         data: form.serializeArray(),
@@ -66,11 +70,11 @@ form.on('submit', (e) => {
         }
     }).done(response => {
         console.log(response)
-    });*/
+    });*!/
 
     //$('#main-card').html("<iframe src='https://open.spotify.com/embed/track/"+playerResult+"' width='300' height='380' frameborder='0' allowtransparency='true' allow='encrypted-media'></iframe>")
     //$('#social').show();
-});
+});*/
 
 /**  Web API Spech Recognition **/
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -86,7 +90,12 @@ var recognizing;
 var recognition = new webkitSpeechRecognition();
 recognition.continuous = true;
 reset();
-recognition.onend = reset;
+recognition.onspeechend = function() {
+    recognition.stop();
+    console.log('Speech recognition has stopped.');
+    reset();
+}
+// recognition.onend = reset;
 recognition.onresult = function (event) {
     console.log('recording successfully ' + event);
 
@@ -95,7 +104,7 @@ recognition.onresult = function (event) {
             $('#keyword').val(event.results[i][0].transcript);
             $('#keyword').attr("placeholder", event.results[i][0].transcript);
             item = event.results[i][0].transcript;
-            itemRequest.push(item);
+            /*itemRequest.push(item);
             console.log(itemRequest);
             if(event.results[i][0].transcript.includes('play')){
                 itemRequest.pop();
@@ -134,14 +143,10 @@ recognition.onresult = function (event) {
                 artist = event.results[i][0].transcript.slice(startArtist);
                 itemRequest.push(artist);
                 console.log(itemRequest);
-            }
-            /*if (event.results[i][0].transcript.length <= 1){
-                item = event.results[i][0].transcript;
-                itemRequest.push(item);
-                console.log(item);
             }*/
         }
     }
+    form.submit();
 }
 
 function reset() {
@@ -149,16 +154,17 @@ function reset() {
     $('.record-info').html("Click to Speak");
 }
 function toggleStartStop() {
+    /*
     if (recognizing) {
         console.log("recording stopped");
         recognition.stop();
         reset();
-    } else {
+    } else {*/
         console.log("recording");
         recognition.start();
         recognizing = true;
         $('.record-info').html("Click to Stop");
-    }
+    //}
 }
 
 /*

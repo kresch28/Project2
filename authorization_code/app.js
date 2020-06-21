@@ -15,7 +15,7 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-let webhook = require('./webhook');
+// let webhook = require('./webhook');
 
 var client_id = '6339d835dda0488ea37720c3ac51dba5'; // Your client id
 var client_secret = '3613bd7077714acfa53d7b4ee182ccf7'; // Your secret

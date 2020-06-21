@@ -50,7 +50,7 @@
             <form class="form-inline" action="result.html" method="get" id="searchForm">
                 <div class="md-form my-0">
                     <input class="form-control mr-sm-2 web-search-box" type="text" name="keyword" id="keyword" value='' placeholder="Search" aria-label="Search">
-                    <input type="submit" name="submit" value="Go" id="go">
+                    <input type="submit" name="search" value="Go" id="go">
                 </div>
             </form>
         </div>
@@ -69,9 +69,22 @@
                 <div class="text-white text-center py-5 px-4" id="main-card">
                     <div>
                         <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>What melody or song are you looking for?</strong></h2>
-                        <p class="mx-5 mb-5 record-info">Play press to start recording</p>
+                        <h3 class="mx-5 mb-5 record-info">Speak Now:</h3>
+                        <style>
+                            .record-info {
+                                color: red;
+                                animation-name: example;
+                                animation-duration: 2s;
+                                animation-iteration-count: infinite;
+                            }
+
+                            @keyframes example {
+                                from {color: red;}
+                                to {color: white;}
+                            }
+                        </style>
                         <div class="d-flex justify-content-center">
-                            <div class="round-button record"><div class="round-button-circle"><button class="record round-button btn-link"><i class="fas fa-play fa-4x"></i></button></div></div>
+                            <div class="round-button record"><div class="round-button-circle"><button class="record round-button btn-link"><i class="fas fa-microphone fa-4x"></i></button></div></div>
                         </div>
                     </div>
                 </div>
@@ -275,12 +288,25 @@
         });
     }*/
 </script>
-<script src="/__/firebase/7.14.4/firebase-app.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyD4BIHvMdGsopNV1hH3Q3IvSEikoLPI4fE",
+        authDomain: "project2test-9cd70.firebaseapp.com",
+        databaseURL: "https://project2test-9cd70.firebaseio.com",
+        projectId: "project2test-9cd70",
+        storageBucket: "project2test-9cd70.appspot.com",
+        messagingSenderId: "839390629189",
+        appId: "1:839390629189:web:1aa3aefba37117d9c2422c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
 </body>
 </html>

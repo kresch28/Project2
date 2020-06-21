@@ -268,12 +268,25 @@
         });
     }*/
 </script>
-<script src="/__/firebase/7.14.4/firebase-app.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyD4BIHvMdGsopNV1hH3Q3IvSEikoLPI4fE",
+        authDomain: "project2test-9cd70.firebaseapp.com",
+        databaseURL: "https://project2test-9cd70.firebaseio.com",
+        projectId: "project2test-9cd70",
+        storageBucket: "project2test-9cd70.appspot.com",
+        messagingSenderId: "839390629189",
+        appId: "1:839390629189:web:1aa3aefba37117d9c2422c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
 </body>
 </html>

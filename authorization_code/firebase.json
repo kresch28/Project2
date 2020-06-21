@@ -1,5 +1,11 @@
 {
   "hosting": {
+    "rewrites": [
+      {
+        "source": "/login",
+        "function": "app"
+      }
+    ],
     "public": "public",
     "ignore": [
       "firebase.json",

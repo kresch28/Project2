@@ -1,5 +1,13 @@
-console.log('result');
+
 var access_token = localStorage.getItem('access_token');
+
+$(document).ready(function() {
+    console.log('result');
+});
+
+/*$("iframe")[0].load(function () {
+    $("button[title='Play']").click();
+})*/
 
 function getHashParams() {
     var hashParams = {};
