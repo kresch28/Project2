@@ -163,7 +163,7 @@ function toggleStartStop() {
         console.log("recording");
         recognition.start();
         recognizing = true;
-        $('.record-info').html("Click to Stop");
+        $('.record-info').html("You can speek now");
     //}
 }
 

@@ -7,7 +7,11 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-var express = require('express'); // Express web server framework
+const express = require('express');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+
 const serverless = require('serverless-http');
 var request = require('request'); // "Request" library
 var cors = require('cors');
@@ -17,9 +21,14 @@ var bodyParser = require('body-parser');
 
 // let webhook = require('./webhook');
 
+const httpsOptions = {
+  key: fs.readFileSync('../security/key.pem'),
+  cert: fs.readFileSync('../security/cert.pem')
+}
+
 var client_id = '6339d835dda0488ea37720c3ac51dba5'; // Your client id
 var client_secret = '3613bd7077714acfa53d7b4ee182ccf7'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'https://localhost:8443/callback'; // Your redirect uri
 
 
 if (typeof localStorage === "undefined" || localStorage === null) {
@@ -346,10 +355,13 @@ app.post('/player', function(req, res) {
 });
 
 
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(httpsOptions, app);
 
-console.log('Listening on 8888');
-app.listen(8888);
-module.exports = app;
-module.exports.handler = serverless(app);
+httpServer.listen(8080);
+console.log('Listening on 8443');
+httpsServer.listen(8443);
+/*console.log('Listening on 8888');
+app.listen(8888);*/
 
 

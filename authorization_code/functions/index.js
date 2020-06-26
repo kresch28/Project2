@@ -1,4 +1,7 @@
 const functions = require('firebase-functions');
+/*const admin = require('firebase-admin');
+admin.initializeApp();*/
+
 var express = require('express'); // Express web server framework
 // const serverless = require('serverless-http');
 var request = require('request'); // "Request" library
@@ -11,7 +14,7 @@ var bodyParser = require('body-parser');
 
 var client_id = '6339d835dda0488ea37720c3ac51dba5'; // Your client id
 var client_secret = '3613bd7077714acfa53d7b4ee182ccf7'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'https://project2test-9cd70.web.app//callback'; // Your redirect uri
 
 
 /*if (typeof localStorage === "undefined" || localStorage === null) {
@@ -179,7 +182,26 @@ app.get('/refresh_token', function(req, res) {
     });
 
 
-    exports.helloWorld = functions.https.onRequest();
+    exports.helloWorld = functions.https.onRequest(
+        app.get('/login', function(req, res) {
+
+            var state = generateRandomString(16);
+            res.cookie(stateKey, state);
+
+            // your application requests authorization
+            var scope = 'user-read-private user-read-email playlist-read-private user-library-read user-library-modify user-read-currently-playing playlist-read-collaborative user-read-recently-played user-read-playback-state playlist-modify-public playlist-modify-private';
+            res.redirect('https://accounts.spotify.com/authorize?' +
+                querystring.stringify({
+                    response_type: 'code',
+                    client_id: client_id,
+                    scope: scope,
+                    redirect_uri: redirect_uri,
+                    state: state
+                }));
+        })
+    );
+
+    exports.widgets = functions.https.onRequest(app);
 
    /* console.log('Listening on 8888');
     app.listen(8888);
